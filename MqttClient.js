@@ -58,7 +58,7 @@ class MqttClient {
 
     handleCount(count) {
         this.ensureAutoconf(this.identifier);
-        
+
         this.client.publish(`${MqttClient.TOPIC_PREFIX}/${this.identifier}/reading` , `${count * MqttClient.METER_TYPE_SPECIFICS[this.type].multiplier}`);
     }
 
@@ -85,7 +85,7 @@ class MqttClient {
                 "name": "Meter Reading",
                 "unit_of_measurement": MqttClient.METER_TYPE_SPECIFICS[this.type].unit_of_measurement,
                 "device_class": MqttClient.METER_TYPE_SPECIFICS[this.type].device_class,
-                "state_class": "measurement",
+                "state_class": "total_increasing",
                 "object_id": `reedmeter2mqtt_${identifier}_reading`,
                 "unique_id": `reedmeter2mqtt_${identifier}_reading`,
                 "enabled_by_default": true,
