@@ -59,7 +59,10 @@ class MqttClient {
     handleCount(count) {
         this.ensureAutoconf(this.identifier);
 
-        this.client.publish(`${MqttClient.TOPIC_PREFIX}/${this.identifier}/reading` , `${count * MqttClient.METER_TYPE_SPECIFICS[this.type].multiplier}`);
+        this.client.publish(
+            `${MqttClient.TOPIC_PREFIX}/${this.identifier}/reading` ,
+            `${parseFloat((count * MqttClient.METER_TYPE_SPECIFICS[this.type].multiplier).toFixed(2))}`
+        );
     }
 
     ensureAutoconf(identifier) {
