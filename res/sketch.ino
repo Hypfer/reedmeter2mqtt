@@ -1,8 +1,8 @@
 #include <EEPROMWearLevel.h>
 
 // Pin connected to the reed contact (also conveniently doubles as connected to the LED, making it an activity indicator)
-const int inputPin = 13; 
-int lastState = LOW; 
+const int inputPin = 13;
+int lastState = LOW;
 int currentState;
 
 #define EEPROM_LAYOUT_VERSION 0
@@ -40,11 +40,8 @@ void loop() {
       Serial.print(F("impulseCount: "));
       Serial.println(impulseCount);
 
-      if (impulseCount % 10 == 0) {
-        EEPROMwl.put(IMPULSE_COUNT_EEPROM_IDX, impulseCount);
-
-        Serial.println("Persisted impulseCount to EEPROM");
-      }
+      EEPROMwl.put(IMPULSE_COUNT_EEPROM_IDX, impulseCount);
+      Serial.println("Persisted impulseCount to EEPROM");
     }
   }
 
